@@ -41,6 +41,7 @@ A dynamically created linked list records every attempt made by the player, addi
 ### Usage
 
 3. Run in terminal directly through
+   
     ```bash
     java -jar rars1_5.jar nc main.asm
     ```
