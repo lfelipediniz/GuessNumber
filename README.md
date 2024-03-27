@@ -53,9 +53,9 @@ Or use RARS with its graphical interface: To run our code, open it in the **RARS
 
 | Names                          | USP Number |
 | :----------------------------- | ---------- |
-| Luiz Felipe Diniz Costa        | 13782032   |
 | Cauê Paiva Lira                | 14675416   |
+| Luiz Felipe Diniz Costa        | 13782032   |
 | Pedro Henrique Ferreira Silva  | 14677526   |
-| Pedro Loro                     | 00000000   |
+| Pedro Louro Fernandes          | 13672446   |
 
 Project for the course ["Computer Organization and Architecture"](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SSC0902) at the Institute of Mathematics and Computer Science, University of Sao Paulo
