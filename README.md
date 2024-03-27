@@ -14,7 +14,7 @@ Players engage directly with the game through an intuitive interface, entering t
 Through the use of flow control structures such as loops and conditionals, the game maintains a dynamic and responsive environment, guiding players through the guessing process until the correct number is identified.
 
 ### Attempt Tracking (Linked List)
-A dynamically created linked list records every attempt made by the player, adding a strategic element to the game as players can review their past guesses to refine their strategy.
+A dynamically created linked list records each attempt made by the player, so he can better think about his next move.
 
 ## Getting Started
 
