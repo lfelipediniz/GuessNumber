@@ -1,11 +1,11 @@
 # GuessNumber
 
-GuessNumber is an engaging game designed in RISC-V Assembly, where the computer selects a random number between 1 and 100, and players attempt to guess this elusive number. With interactive hints such as "too high", "too low", or "correct", this game offers an enjoyable challenge that sharpens your guessing skills and understanding of number ranges.
+GuessNumber is  game designed in RISC-V Assembly, where the computer selects a random number between 1 and 100, and players attempt to guess this elusive number. With interactive hints such as "too high", "too low", or "correct", this game offers a challenge that sharpens your guessing skills.
 
 ## Features
 
 ### Random Number Generation
-At the core of GuessNumber is a simple yet effective algorithm for generating a random number between 1 and 100. This number becomes the target for the player to guess, ensuring each game is a unique challenge.
+At the core of GuessNumber is a simple algorithm for generating a random number between 1 and 100. This number becomes the target for the player to guess, ensuring each game is a unique challenge.
 
 ### Player Interaction
 Players engage directly with the game through an intuitive interface, entering their guesses in an attempt to uncover the hidden number. After each guess, immediate feedback is provided, indicating whether the guess was too high, too low, or spot-on.
