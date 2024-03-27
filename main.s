@@ -10,7 +10,7 @@
         ecall	
     .end_macro
 
-#RANDINT DEFINES
+         #RANDINT DEFINES
 	.eqv RNG_RETURN_R a0 #labels para registradores da função de criar numeros randomicos
 	.eqv RNG_A_R a1
 	.eqv RNG_C_R a2
@@ -25,22 +25,24 @@
 	.eqv RNG_M_VAL 99 #valor de Módulo do algo. de RNG, vai gerar uma seed final entre [0,99]        
         
         
-#MAIN_GAME DEFINES
-    .eqv USER_CHOICE_R t0  #reg pra guardar o input do user
-    .eqv USER_GUESS_R t1 #reg pra guardar o numero adivinhado pelo user
-    .eqv CORRECT_NUM_R s0  #reg pra guardar o numero correto
+         #MAIN_GAME DEFINES
+        .eqv USER_CHOICE_R t0  #reg pra guardar o input do user
+        .eqv USER_GUESS_R t1 #reg pra guardar o numero adivinhado pelo user
+        .eqv CORRECT_NUM_R s0  #reg pra guardar o numero correto
         
 
-.data
-    menu_message:   .asciz "\nBem-vindo ao GuessNumber! Voce consegue adivinhar o numero em que estou pensando?\n\n[1] Adivinhar um número\n[2] Ver Tentativas\n[3] Iniciar outro jogo\n[0] Sair\n\nEscolha uma opcao: "
+    .data
+    .align 0
+    menu_message:   .asciz "\nBem-vindo ao GuessNumber! Voce consegue adivinhar o numero em que estou pensando?\n\n[1] Adivinhar um número\n [2] Iniciar outro jogo\n[0] Sair\n\nEscolha uma opcao: "
 
     wrong_choice:   .asciz "\nEscolha invalida. Por favor, tente novamente.\n"
-    user_guess:   .asciz "\nTente adivinhar um numero entre 1-100: \n"
+    user_guess:     .asciz "\nTente adivinhar um numero entre 1-100: \n"
     correct_guess:  .asciz "\nParabens, voce acertou!!!\n"
     smaller_guess:  .asciz "\nSua resposta e menor que o numero correto\n"
-    bigger_guess:  .asciz "\nSua resposta e maior  que o numero correto\n"
+    bigger_guess:   .asciz "\nSua resposta e maior  que o numero correto\n"
 
     .text
+    .align 2
     .globl main
 
 # funções principais do jogo
@@ -58,19 +60,16 @@ main:
     # verifica a entrada do usuário e bifurca
     li t1, 1             # compara opção 1
     beq USER_CHOICE_R, t1, guess_number
-    li t1, 2             # compara opçãon 2
-    beq USER_CHOICE_R, t1, see_attempts
-    li t1, 3             # compara opção 3
-    beq USER_CHOICE_R, t1, start_game
+    li t1, 2             # compara opção 2
+    beq USER_CHOICE_R, t1,  start_game
     li t1, 0             # compara opção 0
     beq USER_CHOICE_R, t1, exit_game
 
     # se a entrada não corresponder a nenhum caso, imprime erro e salta de volta para o main
-    la a0, wrong_choice
-    li a7, 4
-    ecall
+    print_str wrong_choice
     j main
 
+#--------Funcoes da adivinhação--------
 guess_number:
     print_str user_guess #printa a mensagem de adivinhar
     
@@ -81,18 +80,42 @@ guess_number:
     blt USER_GUESS_R, CORRECT_NUM_R, less_than               #caso a tentativa do user for menor que a resposta correta
     j greater_than #se o numero não for igual, nem menor, ele é maior
 
+# função auxiliar da guess_number, caso o número seja menor que o correto
+less_than:
+    print_str smaller_guess
+    j guess_number
+
+# função auxiliar da guess_number, caso o número seja maior que o correto
+greater_than: 
+    print_str bigger_guess
+    j guess_number
+
+# parabeniza o usuário e volta para o menu
+victory:
+    print_str correct_guess
+    jal see_attempts #jump pra função de ver tentativas, pois o usuario deve ver seu historico de tentativas, vai retornar pra essa função depois
+    j exit_game #jump pro final do jogo
+
+
+#--------Funções de ver a tentativa do usuario e de usar a lista encadeada--------
 see_attempts:
     # nada aqui ainda
-    j main
+    jr ra #retorna pra quem chamou a função
 
+
+
+#--------Função de começar novo jogo
 start_game:
     # nada aqui ainda
+    # reseta lista linkada de tentativa, e jumpa pra main, ai vai ter um novo numero randomico gerado no comeco da main
     j main
-
+    
+#--------Função de terminar o jogo
 exit_game:
-    # nada aqui ainda
     li a7, 10             # chamada de sistema para sair
     ecall                 # realiza chamada de sistema
+
+
 
 # funções secundárias
 
@@ -114,18 +137,4 @@ randint:
 	addi RNG_RETURN_R, RNG_SEED_R, 1 # registrador de retorno vai ter o valor da seed +1 , já que a seed pode estar entre [0,99] e queremos [1,100]
 	jr ra #retorna pro endereço de chamada
 
-# função auxiliar da guess_number, caso o número seja menor que o correto
-less_than:
-    print_str smaller_guess
-    j guess_number
 
-# função auxiliar da guess_number, caso o número seja maior que o correto
-greater_than: 
-    print_str bigger_guess
-    j guess_number
-
-
-# parabeniza o usuário e volta para o menu
-victory:
-    print_str correct_guess
-    j main
