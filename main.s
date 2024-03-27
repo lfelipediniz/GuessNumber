@@ -1,3 +1,5 @@
+
+
 .data
     menu_message:   .asciz "\nWelcome to GuessNumber! Can you guess the number I'm thinking of?\n\n[1] Guess a number\n[2] See Attempts\n[3] Start another game\n[0] Exit\n\nChoose an option: "
     wrong_choice:   .asciz "Invalid choice. Please try again.\n"
