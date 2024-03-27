@@ -58,4 +58,4 @@ Or use RARS with its graphical interface: To run our code, open it in the **RARS
 | Pedro Henrique Ferreira Silva  | 14677526   |
 | Pedro Loro                     | 00000000   |
 
-This project is part of the course "Computer Organization and Architecture" at the Institute of Mathematics and Computer Science, University of Sao Paulo.
+Project for the course ["Computer Organization and Architecture"](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SSC0902) at the Institute of Mathematics and Computer Science, University of Sao Paulo
