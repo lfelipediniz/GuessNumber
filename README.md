@@ -43,7 +43,7 @@ A dynamically created linked list records each attempt made by the player, so he
 3. Run in terminal directly through
    
     ```bash
-    java -jar rars1_5.jar nc main.asm
+    java -jar rars1_5.jar nc main.s
     ```
 note that your RARS file may have another name
 
