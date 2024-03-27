@@ -18,7 +18,7 @@
 	.eqv RNG_SEED_ADDR_R a4
 	.eqv RNG_SEED_R a5
 		
-	.eqv RANDSEED_ECALL 40 #label para ecall de randseet
+	.eqv RANDSEED_ECALL 42 #label para ecall de randseet
 		
 	.eqv RNG_A_VAL 34 #valor inicial para o A do algoritmo de randomização
 	.eqv RNG_C_VAL 145
