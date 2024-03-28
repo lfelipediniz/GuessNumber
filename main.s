@@ -76,28 +76,28 @@ guess_number:
     read_int  #le um inteiro do usuario
     mv USER_GUESS_R , a0 #guarda esse inteiro
     
-    beq USER_GUESS_R, CORRECT_NUM_R, victory #caso a tentativa do user for igual à resposta correta
-    blt USER_GUESS_R, CORRECT_NUM_R, less_than               #caso a tentativa do user for menor que a resposta correta
-    j greater_than #se o numero não for igual, nem menor, ele é maior
+    beq USER_GUESS_R, CORRECT_NUM_R, victory      #caso a tentativa do user for igual à resposta correta
+    blt USER_GUESS_R, CORRECT_NUM_R, less_than    #caso a tentativa do user for menor que a resposta correta
+    j greater_than                                #se o numero não for igual, nem menor, ele é maior
 
 # função auxiliar da guess_number, caso o número seja menor que o correto
 less_than:
     print_str smaller_guess
-    j guess_number
+    j guess_number #usuario vai tentar adivinhar de novo
 
 # função auxiliar da guess_number, caso o número seja maior que o correto
 greater_than: 
     print_str bigger_guess
-    j guess_number
+    j guess_number  #usuario vai tentar adivinhar de novo
 
-# parabeniza o usuário e volta para o menu
+# parabeniza o usuário, printa as tentativas anteriores e sai do jogo
 victory:
     print_str correct_guess
     jal see_attempts #jump pra função de ver tentativas, pois o usuario deve ver seu historico de tentativas, vai retornar pra essa função depois
     j exit_game #jump pro final do jogo
 
 
-#--------Funções de ver a tentativa do usuario e de usar a lista encadeada--------
+#--------Funções de ver as tentativas do usuario e de usar a lista encadeada--------
 see_attempts:
     # nada aqui ainda
     jr ra #retorna pra quem chamou a função
