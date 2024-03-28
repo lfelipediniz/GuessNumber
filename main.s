@@ -32,13 +32,13 @@
       
  
 .data
-end_msg: .asciz "\n\nTodas as tentativas...\n\n"
+end_msg: .asciz "\nTodas as tentativas...\n\n"
     
 menu_message:   .asciz "\nBem-vindo ao GuessNumber! Você consegue adivinhar o número em que estou pensando?\n\n[1] Adivinhar um número\n[0] Sair\n\nEscolha uma opção: "
 
 wrong_choice:   .asciz "\nEscolha inválida. Por favor, tente novamente.\n"
 user_guess:     .asciz "\nTente adivinhar um número entre 1-100: \n"
-correct_guess:  .asciz "\nParabéns, você acertou!!!\n"
+correct_guess:  .asciz "\n\nParabéns, você acertou!!!\n"
 smaller_guess:  .asciz "\nSua resposta é menor que o número correto\n"
 bigger_guess:   .asciz "\nSua resposta é maior que o número correto\n"
 line_break:     .asciz "\n"
@@ -164,6 +164,9 @@ greater_than:
     j continue_guessing
 
 exit_game:
+    # imprIme os parabéns
+    print_str correct_guess
+
     # imprime o número que precisa ser adivinhado
     addi a7, zero, 1
     mv a0, CORRECT_NUM_R
