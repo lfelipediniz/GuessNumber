@@ -32,7 +32,7 @@
       
  
 .data
-end_msg: .asciz "\nTodas as tentativas...\n"
+end_msg: .asciz "\n\nTodas as tentativas...\n\n"
     
 menu_message:   .asciz "\nBem-vindo ao GuessNumber! Você consegue adivinhar o número em que estou pensando?\n\n[1] Adivinhar um número\n[0] Sair\n\nEscolha uma opção: "
 
@@ -42,6 +42,7 @@ correct_guess:  .asciz "\nParabéns, você acertou!!!\n"
 smaller_guess:  .asciz "\nSua resposta é menor que o número correto\n"
 bigger_guess:   .asciz "\nSua resposta é maior que o número correto\n"
 line_break:     .asciz "\n"
+attempts_num:   .asciz "\nNumero de tentativas: "
 
 .text
 .align 2
@@ -132,9 +133,10 @@ update_list:
 
 victory:
     # imprime mensagem de fim
-    addi a7, zero, 4
-    la a0, end_msg
-    ecall
+    print_str end_msg
+
+    # inicializa o contador de loop
+    li t4, 0                  # t4 é nosso contador, inicializado com 0
 
     # loop para imprimir a lista
     lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
@@ -142,6 +144,7 @@ victory:
 print_loop:
     beqz t2, exit_game        # se o nó é NULL, fim da lista
     lw t1, 0(t2)              # carrega o inteiro do nó
+    addi t4, t4, 1            # incrementa o contador
     addi a7, zero, 1          # syscall para imprimir inteiro
     mv a0, t1
     ecall
@@ -161,6 +164,13 @@ greater_than:
     j continue_guessing
 
 exit_game:
+    # imprime numero de tentativas
+    print_str attempts_num
+
+    mv a0, t4             # move o valor do contador para a0, o argumento da syscall de impressão
+    addi a7, zero, 1      # syscall para imprimir inteiro
+    ecall
+
     li a7, 10             # chamada de sistema para sair
     ecall                 # realiza chamada de sistema
 
