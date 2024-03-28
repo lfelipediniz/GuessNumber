@@ -95,10 +95,10 @@ guess_number:
 	# copia t1 para USER_GUESS_R
 	mv USER_GUESS_R, t1
 
-    # printa corret_num_r
-    addi a7, zero, 1
-    mv a0, CORRECT_NUM_R
-    ecall
+    # printa o número que precisa ser adivinhado
+    # addi a7, zero, 1
+    # mv a0, CORRECT_NUM_R
+    # ecall
 
 	# compara o inteiro lido com CORRECT_NUM_R
     beq USER_GUESS_R, CORRECT_NUM_R, victory   #caso a tentativa do usuário for igual à resposta correta
