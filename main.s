@@ -11,24 +11,24 @@
 .end_macro
 
 #RANDINT DEFINES
-.eqv RNG_RETURN_R a0 #labels para registradores da função de criar números randômicos
-.eqv RNG_A_R a1
-.eqv RNG_C_R a2
-.eqv RNG_M_R a3 
-.eqv RNG_SEED_ADDR_R a4
-.eqv RNG_SEED_R a5
+    .eqv RNG_RETURN_R a0 #labels para registradores da função de criar números randômicos
+    .eqv RNG_A_R a1
+    .eqv RNG_C_R a2
+    .eqv RNG_M_R a3 
+    .eqv RNG_SEED_ADDR_R a4
+    .eqv RNG_SEED_R a5
 		
-.eqv RANDSEED_ECALL 40 #label para ecall de randseed
-		
-.eqv RNG_A_VAL 34 #valor inicial para o a do algoritmo de randomização
-.eqv RNG_C_VAL 145
-.eqv RNG_M_VAL 99 #valor de módulo do algo. de rng, vai gerar uma seed final entre [0,99]        
+    .eqv RANDSEED_ECALL 42 #label para ecall de randseed
+            
+    .eqv RNG_A_VAL 34 #valor inicial para o a do algoritmo de randomização
+    .eqv RNG_C_VAL 145
+    .eqv RNG_M_VAL 99 #valor de módulo do algo. de rng, vai gerar uma seed final entre [0,99]        
         
         
 #MAIN_GAME DEFINES
-.eqv USER_CHOICE_R  t0  #reg para guardar o input do usuário
-.eqv USER_GUESS_R t1 #reg para guardar o número adivinhado pelo usuário
-.eqv CORRECT_NUM_R s0  #reg para guardar o número correto
+    .eqv USER_CHOICE_R  t0  #reg para guardar o input do usuário
+    .eqv USER_GUESS_R t1 #reg para guardar o número adivinhado pelo usuário
+    .eqv CORRECT_NUM_R s3  #reg para guardar o número correto
       
  
 .data
@@ -138,6 +138,7 @@ victory:
 
     # loop para imprimir a lista
     lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
+
 print_loop:
     beqz t2, exit_game        # se o nó é NULL, fim da lista
     lw t1, 0(t2)              # carrega o inteiro do nó
