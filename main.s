@@ -34,13 +34,13 @@
 .data
 end_msg: .asciz "\nTodas as tentativas...\n\n"
     
-menu_message:   .asciz "\nBem-vindo ao GuessNumber! Você consegue adivinhar o número em que estou pensando?\n\n[1] Adivinhar um número\n[0] Sair\n\nEscolha uma opção: "
+menu_message:   .asciz "\nBem-vindo ao GuessNumber! Voce consegue adivinhar o numero em que estou pensando?\n\n[1] Adivinhar um numero\n[0] Sair\n\nEscolha uma opcao: "
 
-wrong_choice:   .asciz "\nEscolha inválida. Por favor, tente novamente.\n"
-user_guess:     .asciz "\nTente adivinhar um número entre 1-100: \n"
-correct_guess:  .asciz "\n\nParabéns, você acertou!!!\n"
-smaller_guess:  .asciz "\nSua resposta é menor que o número correto\n"
-bigger_guess:   .asciz "\nSua resposta é maior que o número correto\n"
+wrong_choice:   .asciz "\nEscolha invalida. Por favor, tente novamente.\n"
+user_guess:     .asciz "\nTente adivinhar um numero entre 1-100: \n"
+correct_guess:  .asciz "\n\nParabens, voce acertou!!!\n"
+smaller_guess:  .asciz "\nSua resposta e menor que o numero correto\n"
+bigger_guess:   .asciz "\nSua resposta e maior que o numero correto\n"
 line_break:     .asciz "\n"
 attempts_num:   .asciz "\nNumero de tentativas ate acertar: "
 
