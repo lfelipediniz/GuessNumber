@@ -49,7 +49,7 @@ line_break:     .asciz "\n"
 
 
 main:
-	jal randint #chama função de randint
+    jal randint #chama função de randint
     mv CORRECT_NUM_R, RNG_RETURN_R #guarda o valor aleatório
 
     # alocando nó inicial, não usado para armazenar dados mas como ponto de partida
