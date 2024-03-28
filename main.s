@@ -164,16 +164,13 @@ greater_than:
     j continue_guessing
 
 exit_game:
-    # imprIme os parabéns
-    print_str correct_guess
-
     # imprime o número que precisa ser adivinhado
     addi a7, zero, 1
     mv a0, CORRECT_NUM_R
     ecall
 
-    # imprime quebra de linha
-    print_str line_break
+    # imprIme os parabéns
+    print_str correct_guess
 
     # imprime numero de tentativas
     print_str attempts_num
