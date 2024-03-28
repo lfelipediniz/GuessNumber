@@ -42,7 +42,7 @@ correct_guess:  .asciz "\nParabéns, você acertou!!!\n"
 smaller_guess:  .asciz "\nSua resposta é menor que o número correto\n"
 bigger_guess:   .asciz "\nSua resposta é maior que o número correto\n"
 line_break:     .asciz "\n"
-attempts_num:   .asciz "\nNumero de tentativas: "
+attempts_num:   .asciz "\nNumero de tentativas ate acertar: "
 
 .text
 .align 2
@@ -164,6 +164,14 @@ greater_than:
     j continue_guessing
 
 exit_game:
+    # imprime o número que precisa ser adivinhado
+    addi a7, zero, 1
+    mv a0, CORRECT_NUM_R
+    ecall
+
+    # imprime quebra de linha
+    print_str line_break
+
     # imprime numero de tentativas
     print_str attempts_num
 
