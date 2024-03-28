@@ -29,6 +29,7 @@
     .eqv USER_CHOICE_R  t0  #reg para guardar o input do usuário
     .eqv USER_GUESS_R t1 #reg para guardar o número adivinhado pelo usuário
     .eqv CORRECT_NUM_R s3  #reg para guardar o número correto
+    .eqv ATTEMPSTS_COUNTER_R s4 #reg para guardar o número de tentativas
       
  
 .data
@@ -135,8 +136,8 @@ victory:
     # imprime mensagem de fim
     print_str end_msg
 
-    # inicializa o contador de loop
-    li t4, 0                  # t4 é nosso contador, inicializado com 0
+    # inicializa ATTEMPSTS_COUNTER_R com 0
+    addi ATTEMPSTS_COUNTER_R, zero, 0
 
     # loop para imprimir a lista
     lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
@@ -144,7 +145,10 @@ victory:
 print_loop:
     beqz t2, exit_game        # se o nó é NULL, fim da lista
     lw t1, 0(t2)              # carrega o inteiro do nó
-    addi t4, t4, 1            # incrementa o contador
+    
+    # incrementa o contador de tentativas
+    addi ATTEMPSTS_COUNTER_R, ATTEMPSTS_COUNTER_R, 1
+    
     addi a7, zero, 1          # syscall para imprimir inteiro
     mv a0, t1
     ecall
@@ -175,8 +179,9 @@ exit_game:
     # imprime numero de tentativas
     print_str attempts_num
 
-    mv a0, t4             # move o valor do contador para a0, o argumento da syscall de impressão
-    addi a7, zero, 1      # syscall para imprimir inteiro
+    # imprime o valor do contador de tentativas
+    addi a7, zero, 1
+    mv a0, ATTEMPSTS_COUNTER_R
     ecall
 
     li a7, 10             # chamada de sistema para sair
