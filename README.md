@@ -49,7 +49,7 @@ note that your RARS file may have another name
 
 Or use RARS with its graphical interface: To run our code, open it in the **RARS** program. After opening it, press the F3 key on your keyboard. If everything goes well, press F5 and enjoy your agenda of appointments.
 
-#### Simu
+#### Usability simulation
 
 ## Authors
 
