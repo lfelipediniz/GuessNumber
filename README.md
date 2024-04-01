@@ -53,19 +53,19 @@ Or use RARS with its graphical interface: To run our code, open it in the **RARS
 
 When we start the program we see a welcome message with two options, typing 1 starts the game and pressing 0 exits the program, so let's get started!
 
-<img src="images/1.png" alt="Illustrative picture">
+<img src="images/1.png" width="100%" alt="Illustrative picture">
 
 Now we were not given our first opportunity to try to guess the number from 1 to 100, I tried the number 50, and was told that the written number was smaller than what we were trying to guess...
 
-<img src="images/2.png" alt="Illustrative picture">
+<img src="images/2.png" width="100%" alt="Illustrative picture">
 
 On my second attempt I entered the number 70, and the program returned to me that the selected number is greater than expected...
 
-<img src="images/3.png" alt="Illustrative picture">
+<img src="images/3.png" width="100%" alt="Illustrative picture">
 
 And finally, after a few attempts, I got the generated number right, which in this case is 56. The program congratulated me and informed me of the number of attempts made until I got it right and the numbers I typed until I got the answer!
 
-<img src="images/4.png" alt="Illustrative picture">
+<img src="images/4.png" width="100%"  alt="Illustrative picture">
 
 
 ## Authors
