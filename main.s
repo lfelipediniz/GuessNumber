@@ -191,6 +191,9 @@ exit_game:
    ecall                 # realiza chamada de sistema
 
 randint:
+   #gera valores pseudo-aleatorios entre [1,100]
+   #não recebe argumentos
+   #retorna o valor aleatorio no registrador a0, definido por RNG_RETURN_R
 	li RNG_A_R, RNG_A_VAL #carrega valores que vão ser usados para gerar números randômicos
 	li RNG_C_R, RNG_C_VAL
 	li RNG_M_R, RNG_M_VAL	
