@@ -171,6 +171,8 @@ greater_than:
    j continue_guessing
 
 exit_game:
+   #label para saida do jogo, printa o numero correto na tela, mensagens de parabens , numero de tentativos e faz ecall de sysexit
+
    # imprime o número que precisa ser adivinhado
    addi a7, zero, 1
    mv a0, CORRECT_NUM_R
@@ -191,6 +193,9 @@ exit_game:
    ecall                 # realiza chamada de sistema
 
 randint:
+   #função que retorna um número pseudo-aleatorio por meio do algoritmo gerador congruencial linear 
+   # não recebe parâmetros
+   #retorna o valor aleatório no registrado a0, definido pela label RNG_SEED_R
 	li RNG_A_R, RNG_A_VAL #carrega valores que vão ser usados para gerar números randômicos
 	li RNG_C_R, RNG_C_VAL
 	li RNG_M_R, RNG_M_VAL	
