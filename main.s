@@ -97,8 +97,8 @@ guess_number:
    ecall
    mv t1, a0  # move o inteiro lido para t1
 
-	# copia t1 para USER_GUESS_R
-	mv USER_GUESS_R, t1
+   # copia t1 para USER_GUESS_R
+   mv USER_GUESS_R, t1
 
    # printa o número que precisa ser adivinhado (para debug)
    # addi a7, zero, 1
@@ -108,11 +108,11 @@ guess_number:
 	# compara o inteiro lido com CORRECT_NUM_R
    beq USER_GUESS_R, CORRECT_NUM_R, victory   #caso a tentativa do usuário for igual à resposta correta
 
-	blt USER_GUESS_R, CORRECT_NUM_R, less_than #caso a tentativa do usuário for menor que a resposta correta
+   blt USER_GUESS_R, CORRECT_NUM_R, less_than #caso a tentativa do usuário for menor que a resposta correta
    j greater_than                             #se o número não for igual, nem menor, então é maior
 
 
-   continue_guessing:
+continue_guessing:
    # alocando memória para um novo nó
    addi a7, zero, 9
    addi a0, zero, 8
@@ -156,8 +156,8 @@ print_loop:
    mv a0, t1
    ecall
 
-	# imprime uma quebra de linha
-	print_str line_break
+   # imprime uma quebra de linha
+   print_str line_break
 
    lw t2, 4(t2)              # move para o próximo nó
    j print_loop
