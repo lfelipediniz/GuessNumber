@@ -163,10 +163,12 @@ print_loop:
    j print_loop
 
 less_than:
+   #printa msg de tentativa menor doq a certa
    print_str smaller_guess
    j continue_guessing
 
 greater_than: 
+   #printa msg de tentativa maior doq a certa
    print_str bigger_guess
    j continue_guessing
 
@@ -195,7 +197,7 @@ exit_game:
 randint:
    #função que retorna um número pseudo-aleatorio por meio do algoritmo gerador congruencial linear 
    # não recebe parâmetros
-   #retorna o valor aleatório no registrado a0, definido pela label RNG_SEED_R
+   #retorna o valor aleatório no registrado a0, definido pela label RNG_RETURN_R
 	li RNG_A_R, RNG_A_VAL #carrega valores que vão ser usados para gerar números randômicos
 	li RNG_C_R, RNG_C_VAL
 	li RNG_M_R, RNG_M_VAL	
