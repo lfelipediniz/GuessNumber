@@ -33,6 +33,7 @@
       
  
 .data
+.align 0
    # mensagens para o usuário
    end_msg: .asciz "\nTodas as tentativas...\n\n"
       
