@@ -136,11 +136,15 @@ update_list:
    j guess_number            # volta para o loop de entrada
 
 victory:
+
+   # imprIme os parabéns
+   print_str correct_guess	
+
    # imprime mensagem de fim
    print_str end_msg
 
-   # inicializa ATTEMPSTS_COUNTER_R com 0
-   addi ATTEMPSTS_COUNTER_R, zero, 0
+   # inicializa ATTEMPSTS_COUNTER_R com 1
+   addi ATTEMPSTS_COUNTER_R, zero, 1
 
    # loop para imprimir a lista
    lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
@@ -179,9 +183,6 @@ exit_game:
    addi a7, zero, 1
    mv a0, CORRECT_NUM_R
    ecall
-
-   # imprIme os parabéns
-   print_str correct_guess
 
    # imprime numero de tentativas
    print_str attempts_num
