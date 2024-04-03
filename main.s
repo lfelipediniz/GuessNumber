@@ -22,7 +22,7 @@
             
    .eqv RNG_A_VAL 34 #valor inicial para o a do algoritmo de randomização
    .eqv RNG_C_VAL 145
-   .eqv RNG_M_VAL 99 #valor de módulo do algo. de rng, vai gerar uma seed final entre [0,99]        
+   .eqv RNG_M_VAL 100  #valor de módulo do algoritmo de rng, vai gerar uma seed final entre [0,99]        
         
         
 #MAIN_GAME DEFINES
@@ -204,7 +204,7 @@ randint:
 		  
 	mul RNG_SEED_R, RNG_SEED_R, RNG_A_R  #multiplica a seed por A
 	add RNG_SEED_R, RNG_SEED_R, RNG_C_R  #adiciona C à seed
-	rem RNG_SEED_R, RNG_SEED_R, RNG_M_R  #faz mod da seed por M
+	rem RNG_SEED_R, RNG_SEED_R, RNG_M_R  #faz mod da seed por M 
 	
 	addi RNG_RETURN_R, RNG_SEED_R, 1 #o registrador de retorno vai ter o valor da seed +1, já que a seed pode estar entre [0,99] e queremos [1,100]
 	jr ra #retorna para o endereço de chamada
