@@ -28,7 +28,7 @@
 #MAIN_GAME DEFINES
 .eqv USER_CHOICE_R  t0  #reg para guardar o input do usuário
 .eqv USER_GUESS_R t1 #reg para guardar o número adivinhado pelo usuário
-.eqv CORRECT_NUM_R s0  #reg para guardar o número correto
+.eqv CORRECT_NUM_R s3  #reg para guardar o número correto
       
  
 .data
@@ -92,7 +92,7 @@ guess_number:
     mv t1, a0  # move o inteiro lido para t1
 
 	# copia t1 para USER_GUESS_R
-	mv USER_GUESS_R, t1
+   mv USER_GUESS_R, t1
 
     # printa corret_num_r
     addi a7, zero, 1
