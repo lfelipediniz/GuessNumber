@@ -22,7 +22,7 @@
             
    .eqv RNG_A_VAL 34 #valor inicial para o a do algoritmo de randomização
    .eqv RNG_C_VAL 145
-   .eqv RNG_M_VAL 99 #valor de módulo do algo. de rng, vai gerar uma seed final entre [0,99]        
+   .eqv RNG_M_VAL 100  #valor de módulo do algoritmo de rng, vai gerar uma seed final entre [0,99]        
         
         
 #MAIN_GAME DEFINES
@@ -88,9 +88,7 @@ menu:
 
 guess_number:
    # imprime user_guess
-   addi a7, zero, 4
-   la a0, user_guess
-   ecall
+   print_str user_guess
 
    # lê um inteiro do console
    addi a7, zero, 5
@@ -136,11 +134,15 @@ update_list:
    j guess_number            # volta para o loop de entrada
 
 victory:
+
+   # imprIme os parabéns
+   print_str correct_guess	
+
    # imprime mensagem de fim
    print_str end_msg
 
-   # inicializa ATTEMPSTS_COUNTER_R com 0
-   addi ATTEMPSTS_COUNTER_R, zero, 0
+   # inicializa ATTEMPSTS_COUNTER_R com 1
+   addi ATTEMPSTS_COUNTER_R, zero, 1
 
    # loop para imprimir a lista
    lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
@@ -180,9 +182,6 @@ exit_game:
    mv a0, CORRECT_NUM_R
    ecall
 
-   # imprIme os parabéns
-   print_str correct_guess
-
    # imprime numero de tentativas
    print_str attempts_num
 
@@ -195,9 +194,9 @@ exit_game:
    ecall                 # realiza chamada de sistema
 
 randint:
-   #gera valores pseudo-aleatorios entre [1,100]
-   #não recebe argumentos
-   #retorna o valor aleatorio no registrador a0, definido por RNG_RETURN_R
+   #função que retorna um número pseudo-aleatorio por meio do algoritmo gerador congruencial linear 
+   # não recebe parâmetros
+   #retorna o valor aleatório no registrado a0, definido pela label RNG_RETURN_R
 	li RNG_A_R, RNG_A_VAL #carrega valores que vão ser usados para gerar números randômicos
 	li RNG_C_R, RNG_C_VAL
 	li RNG_M_R, RNG_M_VAL	
@@ -208,7 +207,7 @@ randint:
 		  
 	mul RNG_SEED_R, RNG_SEED_R, RNG_A_R  #multiplica a seed por A
 	add RNG_SEED_R, RNG_SEED_R, RNG_C_R  #adiciona C à seed
-	rem RNG_SEED_R, RNG_SEED_R, RNG_M_R  #faz mod da seed por M
+	rem RNG_SEED_R, RNG_SEED_R, RNG_M_R  #faz mod da seed por M 
 	
 	addi RNG_RETURN_R, RNG_SEED_R, 1 #o registrador de retorno vai ter o valor da seed +1, já que a seed pode estar entre [0,99] e queremos [1,100]
 	jr ra #retorna para o endereço de chamada
