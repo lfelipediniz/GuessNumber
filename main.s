@@ -88,9 +88,7 @@ menu:
 
 guess_number:
    # imprime user_guess
-   addi a7, zero, 4
-   la a0, user_guess
-   ecall
+   print_str user_guess
 
    # lê um inteiro do console
    addi a7, zero, 5
