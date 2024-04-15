@@ -48,7 +48,7 @@
    attempts_num:   .asciz "\nNumero de tentativas ate acertar: "
   
 .align 2
-   list_head:            .word #ponteiro para o começo da lista encadeada, não tem valor em si, apenas aponta pro começo da lista
+   list_head:            .word 0 #ponteiro para o começo da lista encadeada, não tem valor em si, apenas aponta pro começo da lista
 
 .text
 .align 2
