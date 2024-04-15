@@ -46,6 +46,9 @@
    bigger_guess:   .asciz "\nSua resposta e maior que o numero correto\n"
    line_break:     .asciz "\n"
    attempts_num:   .asciz "\nNumero de tentativas ate acertar: "
+  
+.align 2
+   list_head:            .word #ponteiro para o começo da lista encadeada, não tem valor em si, apenas aponta pro começo da lista
 
 .text
 .align 2
@@ -58,14 +61,16 @@ main:
 
    #guarda o valor aleatório
    mv CORRECT_NUM_R, RNG_RETURN_R 
+   la s0, list_head #carrega o endereço do ponteiro pro começo da lista 
 
    # alocando nó inicial, não usado para armazenar dados mas como ponto de partida
    addi a7, zero, 9          # syscall para sbrk
    addi a0, zero, 8          # tamanho para um nó (4 bytes para inteiro, 4 para ponteiro next)
    ecall
-   mv s0, a0                 # s0 sempre apontará para o início da lista
-   sw zero, 0(s0)            # definindo valor inicial do nó para 0 (não realmente necessário)
-   sw zero, 4(s0)            # definindo ponteiro next do nó inicial para NULL
+
+   sw zero, 0(a0)            # definindo valor inicial do nó para 0 (não realmente necessário)
+   sw zero, 4(a0)            # definindo ponteiro next do nó inicial para NULL
+   sw a0 , 0(s0)             #guarda o endereço do no inicial no ponteiro
 
 menu:
    # imprime mensagem do menu
@@ -120,7 +125,7 @@ continue_guessing:
    sw t1, 0(a0)
 
    # encontra o último nó
-   mv t2, s0 # começa do início da lista
+   la t2, list_head # começa do início da lista vindo do ponteiro
 
 find_last:
    lw t3, 4(t2)              # carrega o endereço do próximo nó
@@ -145,7 +150,8 @@ victory:
    addi ATTEMPSTS_COUNTER_R, zero, 1
 
    # loop para imprimir a lista
-   lw t2, 4(s0)              # carrega o primeiro nó real (pula o nó dummy inicial)
+   la t2, list_head          # carrega endereço do ponteiro que aponta pro começo da lista encad
+   lw t2, 4(t2)              # carrega o endereço do primeiro nó real (pula o nó dummy inicial)
 
 print_loop:
    beqz t2, exit_game        # se o nó é NULL, fim da lista
